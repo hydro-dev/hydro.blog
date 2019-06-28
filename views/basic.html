@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>{{render_title(title,blog_title)}}</title>
+    <link href="/hydro.blog/Soha-Notebook-Icons.css" rel="stylesheet">
+    <link href="/hydro.blog/paper.css" rel="stylesheet">
+</head>
+
+<body>
+    {% block header %}{% endblock %}
+    {% block body %}{% endblock %}
+    <script src="/hydro.blog/paper.js"></script>
+    <script src="/hydro.blog/jquery-3.4.1.min.js"></script>
+    {% block footer %}{% endblock %}
+    <footer>
+        Powered by <a href="https://hydro-framework.ml/">Hydro</a>,
+        theme designed by <a href="https://sohaj.in">Soha Jin</a>,
+        modified by <a href="https://masnn.ml">masnn</a>.
+    </footer>
+</body>
+
+</html>

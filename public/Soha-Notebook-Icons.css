@@ -1,0 +1,14 @@
+[class*='icon-']:before{
+	display: inline-block;
+	font-family: 'Soha Notebook Icons';
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.icon-comment:before{content:'\0021';}
+.icon-tag:before{content:'\0023';}
+.icon-left:before{content:'\0028';}
+.icon-right:before{content:'\0029';}
+.icon-etc:before{content:'\002e';}

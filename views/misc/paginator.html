@@ -1,0 +1,11 @@
+{% macro paginator(curpage,total) %}
+<div class="pagination">
+    {% if curpage > 1 %}
+    <a class="page" href="?page={{curpage-1}}"><i class="icon-left"></i></a>
+    {% endif %}
+    <a class="page">{{curpage}}/{{total}}</a>
+    {% if curpage < total %}
+    <a class="page" href="?page={{curpage+1}}">&nbsp;<i class="icon-right"></i></a>
+    {% endif %}
+</div>
+{% endmacro %}

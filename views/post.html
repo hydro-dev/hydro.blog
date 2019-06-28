@@ -1,0 +1,68 @@
+{% set page="hydro_blog_post" %}
+{% macro tt(t) %}
+{% if t %}{{t}}{% else %}{{_('Untitled')}}{% endif %}
+{% endmacro %}
+{% extends "./basic.html" %}
+{% block header %}
+<header>
+    <div class="tape">
+        <div></div>
+    </div>
+    <h1>{{render_title(title,blog_title)}}</h1>
+    <div class="header-nav">
+        <a href="">{{_('Home')}}</a>
+        {% for i in categories %}
+        <a href="{{url('hydro_blog_category',i.id)}}">{{i.name}}</a>
+        {% endfor %}
+    </div>
+</header>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="paper grid">
+        <article>
+            <h1><a href="#">{{tt(post.title)}}</a></h1>
+            <span class="meta">{{post.time.toLocaleString()}} / {{post.uname}}</span>
+            <div class="content">{{post.html|safe}}</div>
+        </article>
+        <dl>
+            <dt><i class="icon-tag"></i></dt>
+            <dd>{{post.tags}}</dd>
+        </dl>
+    </div>
+    <nav>
+        <ul>{% if pre %}
+            <a href="{{url('hydro_blog_post',pre.id)}}">
+                <li class="yellow"><i class="icon-left"></i>&nbsp;{{tt(pre.title)}}</li>
+            </a>
+            {% endif %}</ul>
+        <ul>{% if next %}
+            <a href="{{url('hydro_blog_post',next.id)}}">
+                <li class="pink">{{tt(next.title)}}<i class="icon-right"></i></li>
+            </a>
+            {% endif %}</ul>
+    </nav>
+    <div id="comment-form-wrapper">
+        <div class="paper line padding-small" id="comment-form">
+            <form action="{{url('hydro_blog_comment',post.id)}}" method="POST">
+                <h2>{{_('Comment')}}</h2>
+                <textarea name="content" placeholder="{{_('Write down what you want to say:')}}"></textarea>
+                <div style="margin-top: .6em;">
+                    {% if user.uid==1 %}
+                    <a href="{{url('user_login')}}">{{_('To comment, you have to login first.')}}</a>
+                    {% else %}
+                    <input type="submit" value="{{_('Send')}}">
+                    {% endif %}
+                    <button style="display: none;" id="cancel-reply">{{_('Cancel reply')}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% for item in comments %}
+    {% include './misc/comment_block.html' %}
+    {% endfor %}
+</div>
+{% endblock %}
+{% block footer %}
+<script src="/hydro.blog/comment.js"></script>
+{% endblock %}

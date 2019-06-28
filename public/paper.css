@@ -1,0 +1,342 @@
+html {
+	font-size: 16px;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	background-color: #ececec;
+}
+
+dl dt {
+	display: inline-block;
+}
+dl dt [class*='icon-'] {
+	font-size: 1.6rem;
+}
+dl dd {
+	display: inline-block;
+	margin-inline-start: .4em;
+}
+
+hr {
+	border: 0;
+	/* hand drawn divider */
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 6'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:none;stroke:%23231f20;stroke-miterlimit:10;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M0,3c.73,0,1.46-.1,2.19-.1a.3.3,0,0,1,.13,0A.39.39,0,0,1,2.38,3c.13.28.53.3.83.2A1.89,1.89,0,0,1,4.1,3a5.17,5.17,0,0,1,.51.18c.59.15,1.15-.44,1.76-.41.36,0,.69.23,1,.21.53,0,1-.54,1.48-.47.31,0,.55.29.84.43.85.4,1.85-.29,2.77-.14.5.08.92.4,1.41.51,1,.23,2-.36,3-.29.38,0,.76.16,1.14.16.76,0,1.27-.21,2-.21'/%3E%3C/svg%3E");
+	height: .8em;
+	background-position: 0 0;
+	background-repeat: repeat-x;
+	background-size: contain;
+	opacity: .7;
+}
+
+header {
+	padding: 1.8rem;
+	color: #535353;
+	background-color: #fafafa;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+	margin: 40px auto;
+	margin-bottom: 0;
+	max-width: 720px;
+	font-size: 14px;
+}
+
+header h1 {
+	font-size: 2rem;
+	margin: 0;
+	display: block;
+	text-align: center;
+}
+
+header .tape > div {
+	top: -50px;
+}
+
+footer {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 6px;
+	font-size: .75rem;
+}
+
+a {
+	color: #039be5;
+	text-decoration: none;
+}
+
+.container {
+	margin: 40px auto;
+	margin-bottom: 6px;
+	width: 66vw;
+	color: #666;
+}
+
+.container > h2 {
+	padding-left: 1em;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	height: 0;
+}
+
+nav ul {
+	list-style: none;
+	display: block;
+	min-width: 0;
+	margin: 0;
+	padding: 0 1em;
+}
+
+nav ul li {
+	color: #000;
+	position: relative;
+	display: block;
+	background-color: #fff;
+	opacity: .7;
+	min-width: 3em;
+	padding: .2em .6em;
+	margin: 0 .16em;
+	box-shadow: 3px 2px 4px rgba(0, 0, 0, .2);
+	text-align: center;
+	bottom: 5px;
+	left: 0;
+	transition: .8s ease all;
+	user-select: none;
+	cursor: pointer;
+}
+nav ul li:hover {
+	color: #444;
+	box-shadow: 5px 4px 4px rgba(0, 0, 0, .2);
+	opacity: 1;
+	bottom: 8px;
+	left: -2px;
+}
+nav ul li.cyan, div.cyan { background-color: #d0f4f4; }
+nav ul li.purple, div.purple { background-color: #eed5ff; }
+nav ul li.pink, div.pink { background-color: #ffc0d7; }
+nav ul li.yellow, div.yellow { background-color: #fff9c1; }
+nav ul li.green, div.green { background-color: #cfebd2; }
+.container > nav ul li {
+	bottom: 32px;
+}
+.container > nav ul li:hover {
+	bottom: 35px;
+}
+
+.paper {
+	margin: 18px 0;
+	color: #333;
+	background-color: #fafafa;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+	background-image: radial-gradient(#e6e6e6 20%, transparent 20%), radial-gradient(#a0a0a0 16%, transparent 25%); /* binding circle */
+	background-repeat: repeat-y, repeat-y;
+	background-position: 5px 5px, 5px 4px;
+	background-size: 3.6rem 3.6rem, 3.6rem 3.6rem;
+	padding: 2em 2em 2em 4em;
+	transition: .6s ease all;
+}
+.paper.padding-small {
+	padding-top: .7em;
+	padding-bottom: .7em;
+}
+.paper.grid {
+	background-image: 
+		radial-gradient(#e6e6e6 20%, transparent 20%), radial-gradient(#a0a0a0 16%, transparent 25%), /* binding circle */
+		linear-gradient(.0deg, transparent 0%, transparent 95%, rgba(150, 150, 150, .3) 95%, rgba(150, 150, 150, .3) 100%), /* grid x */
+		linear-gradient(90deg, transparent 0%, transparent 95%, rgba(150, 150, 150, .3) 95%, rgba(150, 150, 150, .3) 100%); /* grid y */
+	background-repeat: repeat-y, repeat-y, repeat, repeat;
+	background-position: 5px 5px, 5px 4px, 50% 8px, 50% 8px;
+	background-size: 3.6rem 3.6rem, 3.6rem 3.6rem, .9rem .9rem, .9rem .9rem;
+}
+.paper.line {
+	background-image: 
+		radial-gradient(#e6e6e6 20%, transparent 20%), radial-gradient(#a0a0a0 16%, transparent 25%), /* binding circle */
+		linear-gradient(.0deg, transparent 0%, transparent 95%, rgba(150, 150, 150, .3) 95%, rgba(150, 150, 150, .3) 100%); /* lines */
+	background-repeat: repeat-y, repeat-y, repeat;
+	background-position: 5px 5px, 5px 4px, 50% 8px;
+	background-size: 3.6rem 3.6rem, 3.6rem 3.6rem, 1.3rem 1.3rem;
+}
+.paper.ripped {
+	position: relative;
+}
+.paper.ripped:after, .paper.ripped:before {
+	content: "";
+	height: 5px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	/* needs clip-path */
+}
+.paper.ripped:after {
+	bottom: -5px;
+	background-color: #fafafa; /* .paper */
+}
+.paper.ripped:before {
+	top: 0;
+	background-color: #ececec; /* body */
+}
+
+.paper .paper {
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.paper textarea {
+	width: 100%;
+	min-height: 7rem;
+	border: none;
+	background-color: transparent;
+}
+.paper input {
+	width: 100%;
+	line-height: 1.5em;
+	border: 1px dashed #ccc;
+	background-color: transparent;
+}
+.paper input[type="submit"] {
+	width: auto;
+}
+.paper input[type="submit"], .paper button {
+	line-height: 1.5em;
+	font-size: 14px;
+	border: 2px solid #888;
+	background-color: transparent;
+}
+.paper .tape > div {
+	top: -30px;
+	background-color: rgba(207, 235, 210, .46);
+}
+.paper .tape > div:after {
+	background-image: linear-gradient(45deg, transparent 50%, rgba(207, 235, 210, .46) 50%), linear-gradient(-45deg, rgba(207, 235, 210, .46) 50%, transparent 50%);
+}
+.paper .tape > div:before {
+	background-image: linear-gradient(135deg, rgba(207, 235, 210, .46) 50%, transparent 50%), linear-gradient(-135deg, transparent 50%, rgba(207, 235, 210, .46) 50%);
+}
+
+.tape {
+	position: relative;
+}
+.tape > div {
+	left: 50%;
+	transform: translateX(-50%);
+	position: absolute;
+	background-color: rgba(250, 194, 205, .3);
+	height: 40px;
+	width: 180px;
+}
+.tape > div:after, .tape > div:before {
+	background-size: 7px 7px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	content: "";
+	width: 4px;
+}
+.tape > div:after {
+	background-image: linear-gradient(45deg, transparent 50%, rgba(250, 194, 205, .3) 50%), linear-gradient(-45deg, rgba(250, 194, 205, .3) 50%, transparent 50%);
+	background-position: 0 100%;
+	left: -4px;
+}
+.tape > div:before {
+	background-image: linear-gradient(135deg, rgba(250, 194, 205, .3) 50%, transparent 50%), linear-gradient(-135deg, transparent 50%, rgba(250, 194, 205, .3) 50%);
+	background-position: 100% 100%;
+	right: -4px;
+}
+
+article > h1 {
+	margin-top: .83em;
+	margin-bottom: 0;
+}
+
+article > .meta {
+	font-size: 11px;
+}
+
+article > .content {
+	padding: .7em 0;
+}
+
+.input-group {
+	display: flex;
+}
+.input-group > * {
+	margin: 0 5px;
+}
+
+.user-avatar {
+	display: flex;
+	align-items: center;
+}
+.user-avatar img {
+	width: 40px;
+	height: 40px;
+}
+.user-avatar > * {
+	margin-left: 8px;
+}
+
+.header-nav {
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 1.5em;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.header-nav > * {
+	margin: .2em .4em;
+}
+
+@media only screen and (max-width: 1200px) {
+	.container {
+		width: 100vw;
+		max-width: 960px;
+	}
+
+	.paper {
+		padding-right: .9em;
+	}
+
+	.input-group {
+		display: block;
+	}
+
+	.input-group * {
+		display: block;
+		margin: 5px 0;
+	}
+}
+
+.pagination {
+	padding: 1.8rem 0;
+	color: #535353;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.pagination a {
+	color: #535353;
+}
+.pagination > * {
+	margin: auto 6px;
+	font-size: 1.1rem;
+	user-select: none;
+}
+.pagination .page {
+	padding: 2px 10px;
+	font-size: 1.1rem;
+	line-height: 30px;
+	background-color: #fafafa;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+	transition: .6s ease all;
+	user-select: none;
+	cursor: pointer;
+}
+.pagination .page:hover {
+	font-size: 1.4rem;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+}

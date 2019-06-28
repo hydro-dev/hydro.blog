@@ -1,0 +1,27 @@
+<div class="paper line padding-small one-comment" data-id="{{item.id}}">
+    <div class="user-avatar">
+        <a href="{{url('user_show',item.uid)}}"><img src="{{gravatar(item.email,32)}}" /></a>
+        <span>
+            <a href="{{url('user_show',item.uid)}}"><b>{{item.uname}}</b></a>
+        </span>
+        <span><small>{{item.time.toLocaleString()}}</small></span>
+        <span><button data-id="{{item.id}}" class="reply-to-comment">{{_('Reply')}}</button></span>
+    </div>
+    {{item.content}}
+    {% for reply in item.comments %}
+    <div class="paper line padding-small one-comment" data-id="{{reply.id}}">
+        <div class="tape">
+            <div></div>
+        </div>
+        <div class="user-avatar">
+            <a href="{{url('user_show',reply.uid)}}"><img src="{{gravatar(reply.email,32)}}" /></a>
+            <span>
+                <a href="{{url('user_show',reply.uid)}}"><b>{{reply.uname}}</b></a>
+            </span>
+            <span><small>{{reply.time.toLocaleString()}}</small></span>
+            <span><button data-id="{{reply.id}}" class="reply-to-comment">{{_('Reply')}}</button></span>
+        </div>
+        {{reply.content}}
+    </div>
+    {% endfor %}
+</div>

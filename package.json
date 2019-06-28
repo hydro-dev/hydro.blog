@@ -1,0 +1,16 @@
+{
+    "name": "hydro.blog",
+    "version": "0.1.0",
+    "description": "Hydro Blog",
+    "author": "masnn",
+    "license": "MIT",
+    "info": {
+        "router": [
+            {
+                "path": "router.js",
+                "order": 4
+            }
+        ]
+    },
+    "dependencies": {}
+}
