@@ -1,7 +1,7 @@
 const bson = require('bson');
 module.exports = class BLOG {
-    constructor(db) {
-        this.db = db;
+    constructor(item) {
+        this.db = item.db;
     }
     get(postid) {
         return this.db.collection('hydro_blog_posts').findOne({ id: postid });

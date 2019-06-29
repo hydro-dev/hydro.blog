@@ -5,7 +5,7 @@ module.exports = class HYDRO_BLOG_ROUTER {
         this.config = item.config;
         this.lib = item.lib;
         this.router = new Router({ prefix: this.config.path || '' });
-        let blog = new (require('./blog'))(this.db);
+        let blog = this.lib['hydro.blog'];
         let md5 = require('./md5');
         this.router
             .use(async (ctx, next) => {
