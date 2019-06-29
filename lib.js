@@ -1,4 +1,7 @@
+'use strict';
+
 const bson = require('bson');
+
 module.exports = class BLOG {
     constructor(item) {
         this.db = item.db;
@@ -27,13 +30,13 @@ module.exports = class BLOG {
         if (res.length) return res;
         else return null;
     }
-    async add(uid, title, content, tags) {
+    async add(uid, title, type, raw, content, tags) {
         let user = await this.db.collection('user').findOne({ uid });
         if (!user) throw new Error('User not found!');
         let post = {
             id: new bson.ObjectID().toHexString(),
             uid, uname: user.uname, email: user.email,
-            title, content, time: new Date(), tags
+            title, type, raw, content, time: new Date(), tags
         };
         await this.db.collection('hydro_blog_posts').insertOne(post);
         return post.id;

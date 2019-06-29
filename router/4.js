@@ -1,4 +1,7 @@
+'use strict';
+
 const Router = require('koa-router');
+
 module.exports = class HYDRO_BLOG_ROUTER {
     constructor(item) {
         this.db = item.db;
@@ -47,18 +50,12 @@ module.exports = class HYDRO_BLOG_ROUTER {
                 if (!ctx.req.body.content) await ctx._400();
                 else if (ctx.state.user.uid == 1) await ctx._400();
                 else if (!post) await ctx._404([ctx.params.postid]);
-                else if (ctx.req.body.content)
-                    await blog.addComment(ctx.params.postid, ctx.state.user.uid, ctx.req.body.content);
-                ctx.redirect(ctx.state.url('hydro_blog_post', ctx.params.postid));
-            })
-            .post('hydro_blog_comment_to_comment', '/comment/:postid/:id', async ctx => {
-                let post = await blog.get(ctx.params.postid);
-                let comment = await blog.getSingleComment(ctx.params.id);
-                if (!ctx.req.body.content) await ctx._400();
-                else if (ctx.state.user.uid == 1) await ctx._400();
-                else if (!(post && comment)) await ctx._404([ctx.params.postid, ctx.params.id]);
-                else if (ctx.req.body.content)
-                    await blog.replyToComment(ctx.params.id, ctx.state.user.uid, ctx.req.body.content);
+                else if (!ctx.req.body.content) await ctx._400();
+                else if (ctx.req.body.reply_to) {
+                    let comment = await blog.getSingleComment(ctx.req.body.reply_to);
+                    if (!comment) await ctx._404([ctx.req.body.reply_to]);
+                    await blog.replyToComment(ctx.req.body.reply_to, ctx.state.user.uid, ctx.req.body.content);
+                } else await blog.addComment(ctx.params.postid, ctx.state.user.uid, ctx.req.body.content);
                 ctx.redirect(ctx.state.url('hydro_blog_post', ctx.params.postid));
             })
             .all('hydro_blog_delete_comment', '/delete_comment/:postid/:commentid', async ctx => {
@@ -67,6 +64,26 @@ module.exports = class HYDRO_BLOG_ROUTER {
                 else if (comment.uid != ctx.state.user.uid) await ctx._400([ctx.state.user.uid]);
                 else await blog.delComment(ctx.params.commentid);
                 ctx.redirect(ctx.state.url('hydro_blog_post', ctx.params.postid));
+            })
+            .get('hydro_blog_new', '/new', async ctx => {
+                if (!ctx.state.editor)
+                    ctx.state.editor = `
+<input type="text" name="type" placeholder="${ctx.state._('content-type')}">
+<textarea name="content" placeholder="${ctx.state._('content')}"></textarea>
+<textarea name="raw" placeholder="${ctx.state._('raw')}></textarea>
+<button type="submit">${ctx.state._('Submit')}</button>
+                    `;
+                await ctx.render('hydro.blog/new', { title: 'New' });
+            })
+            .post('hydro_blog_new_post', '/new', async ctx => {
+                let id = await blog.add(ctx.state.uid, ctx.req.body.title, ctx.req.body.type, ctx.req.body.raw, ctx.req.body.content, ctx.req.body.tags);
+                ctx.redirect(ctx.state.url('hydro_blog_post', id));
+            })
+            .get('hydro_blog_login', '/login', async ctx => {
+                await ctx.render('hydro.blog/login', { title: 'Login' });
+            })
+            .get('hydro_blog_register', '/register', async ctx => {
+                await ctx.render('hydro.blog/register', { title: 'Register' });
             });
     }
-}
+};

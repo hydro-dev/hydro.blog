@@ -1,0 +1,15 @@
+{% set page="hydro_blog_new" %}
+{% extends "./basic.html" %}
+{% block body %}
+<div class="container">
+    <div id="comment-form-wrapper">
+        <div class="paper line padding-small" id="comment-form">
+            <form method="POST">
+                {{editor|safe}}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

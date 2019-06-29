@@ -3,20 +3,6 @@
 {% if t %}{{t}}{% else %}{{_('Untitled')}}{% endif %}
 {% endmacro %}
 {% extends "./basic.html" %}
-{% block header %}
-<header>
-    <div class="tape">
-        <div></div>
-    </div>
-    <h1>{{blog_title}}</h1>
-    <div class="header-nav">
-        <a href="">{{_('Home')}}</a>
-        {% for i in categories %}
-        <a href="{{url('hydro_blog_category',i.id)}}">{{i.name}}</a>
-        {% endfor %}
-    </div>
-</header>
-{% endblock %}
 {% block body %}
 <div class="container">
     <div class="paper grid">
@@ -49,7 +35,7 @@
                 <textarea name="content" placeholder="{{_('Write down what you want to say:')}}"></textarea>
                 <div style="margin-top: .6em;">
                     {% if user.uid==1 %}
-                    <a href="{{url('user_login')}}">{{_('To comment, you have to login first.')}}</a>
+                    <a href="{{url('hydro_blog_login')}}">{{_('To comment, you have to login first.')}}</a>
                     {% else %}
                     <input type="submit" value="{{_('Send')}}">
                     {% endif %}

@@ -1,20 +1,6 @@
 {% set page="hydro_blog_home" %}
 {% from './misc/paginator.html' import paginator as paginator %}
 {% extends './basic.html' %}
-{% block header %}
-<header>
-    <div class="tape">
-        <div></div>
-    </div>
-    <h1>{{blog_title}}</h1>
-    <div class="header-nav">
-        <a href="">{{_('Home')}}</a>
-        {% for i in categories %}
-        <a href="{{url('hydro_blog_category',i.id)}}">{{i.name}}</a>
-        {% endfor %}
-    </div>
-</header>
-{% endblock %}
 {% block body %}
 <div class="container">
     {% for post in posts -%}

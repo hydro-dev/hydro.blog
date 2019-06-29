@@ -1,0 +1,19 @@
+{% set page="hydro_blog_login" %}
+{% extends "./basic.html" %}
+{% block body %}
+<div class="container">
+    <div id="comment-form-wrapper">
+        <div class="paper line padding-small" id="comment-form">
+            <form action="{{url('user_login_post')}}" method="POST">
+                <h2>{{_('Login')}}</h2>
+                <input type="text" name="uname" id="uname" placeholder="{{_('Username')}}">
+                <input type="password" name="password" id="password" placeholder="{{_('Password')}}">
+                <p>{{_('Don\'t have an account?')}}&nbsp;<a href="{{url('hydro_blog_register')}}">{{_('Register')}}</a></p>
+                <button type="submit">{{_('Login')}}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock %}
