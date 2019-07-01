@@ -34,7 +34,7 @@
                 <h2>{{_('Comment')}}</h2>
                 <textarea name="content" placeholder="{{_('Write down what you want to say:')}}"></textarea>
                 <div style="margin-top: .6em;">
-                    {% if user.uid==1 %}
+                    {% if not user.uid %}
                     <a href="{{url('hydro_blog_login')}}">{{_('To comment, you have to login first.')}}</a>
                     {% else %}
                     <input type="submit" value="{{_('Send')}}">

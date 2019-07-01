@@ -48,7 +48,7 @@ module.exports = class HYDRO_BLOG_ROUTER {
             .post('hydro_blog_comment', '/comment/:postid', async ctx => {
                 let post = await blog.get(ctx.params.postid);
                 if (!ctx.req.body.content) await ctx._400();
-                else if (ctx.state.user.uid == 1) await ctx._400();
+                else if (!ctx.state.user.uid) await ctx._400();
                 else if (!post) await ctx._404([ctx.params.postid]);
                 else if (!ctx.req.body.content) await ctx._400();
                 else if (ctx.req.body.reply_to) {
