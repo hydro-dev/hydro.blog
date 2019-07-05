@@ -66,17 +66,10 @@ module.exports = class HYDRO_BLOG_ROUTER {
                 ctx.redirect(ctx.state.url('hydro_blog_post', ctx.params.postid));
             })
             .get('hydro_blog_new', '/new', async ctx => {
-                if (!ctx.state.editor)
-                    ctx.state.editor = `
-<input type="text" name="type" placeholder="${ctx.state._('content-type')}">
-<textarea name="content" placeholder="${ctx.state._('content')}"></textarea>
-<textarea name="raw" placeholder="${ctx.state._('raw')}></textarea>
-<button type="submit">${ctx.state._('Submit')}</button>
-                    `;
                 await ctx.render('hydro.blog/new', { title: 'New' });
             })
             .post('hydro_blog_new_post', '/new', async ctx => {
-                let id = await blog.add(ctx.state.uid, ctx.req.body.title, ctx.req.body.type, ctx.req.body.raw, ctx.req.body.content, ctx.req.body.tags);
+                let id = await blog.add(ctx.session.uid, ctx.req.body.title, ctx.req.body.type, ctx.req.body.content, ctx.req.body.tags);
                 ctx.redirect(ctx.state.url('hydro_blog_post', id));
             })
             .get('hydro_blog_login', '/login', async ctx => {

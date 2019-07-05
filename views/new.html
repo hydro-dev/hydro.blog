@@ -5,7 +5,15 @@
     <div id="comment-form-wrapper">
         <div class="paper line padding-small" id="comment-form">
             <form method="POST">
-                {{editor|safe}}
+                {% if editor %}
+                  {{editor|safe}}
+                {% else %}
+<input type="text" name="title" placeholder="{{_('Title')}}" />
+<input type="text" name="tags" placeholder="{{_('Tags')}}" />
+<input type="text" name="type" placeholder="{{_('content-type')}}" />
+<textarea name="content" placeholder="{{_('Content')}}"></textarea>
+<button type="submit">{{_('Submit')}}</button>
+                {% endif %}
             </form>
         </div>
     </div>

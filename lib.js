@@ -11,7 +11,7 @@ module.exports = class BLOG {
     }
     async getMany(page) {
         let posts = await this.db.collection('hydro_blog_posts').find()
-            .sort({ time: 1 }).limit(10).skip(10 * (page - 1)).toArray();
+            .sort({ time: -1 }).limit(10).skip(10 * (page - 1)).toArray();
         let info = await this.db.collection('hydro_blog_posts').find().explain();
         return [posts, info.executionStats.nReturned];
     }
@@ -20,23 +20,23 @@ module.exports = class BLOG {
     }
     async getPre(time) {
         let res = await this.db.collection('hydro_blog_posts').find({ time: { $lt: time } })
-            .limit(1).sort({ time: 1 }).toArray();
-        if (res.length) return res;
+            .limit(1).sort({ time: -1 }).toArray();
+        if (res.length) return res[0];
         else return null;
     }
     async getNext(time) {
         let res = await this.db.collection('hydro_blog_posts').find({ time: { $gt: time } })
-            .limit(1).sort({ time: -1 }).toArray();
-        if (res.length) return res;
+            .limit(1).sort({ time: 1 }).toArray();
+        if (res.length) return res[0];
         else return null;
     }
-    async add(uid, title, type, raw, content, tags) {
+    async add(uid, title, type, content, tags) {
         let user = await this.db.collection('user').findOne({ uid });
         if (!user) throw new Error('User not found!');
         let post = {
             id: new bson.ObjectID().toHexString(),
-            uid, uname: user.uname, email: user.email,
-            title, type, raw, content, time: new Date(), tags
+            uid, uname: user.uname,author:user.uname, email: user.email,
+            title, type, content, time: new Date(), tags
         };
         await this.db.collection('hydro_blog_posts').insertOne(post);
         return post.id;
