@@ -1,8 +1,10 @@
 {
     "name": "hydro.blog",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "description": "Hydro Blog",
     "author": "masnn",
     "license": "MIT",
-    "dependencies": {}
+    "dependencies": {
+        "markdown-it": "^9.0.0"
+    }
 }
