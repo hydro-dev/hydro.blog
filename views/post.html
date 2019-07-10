@@ -9,7 +9,7 @@
         <article>
             <h1><a href="#">{{tt(post.title)}}</a></h1>
             <span class="meta">{{post.time.toLocaleString()}} / {{post.uname}}</span>
-            <div class="content">{{post.content|safe}}</div>
+            <div class="content">{{render(post.content,post.type)|safe}}</div>
         </article>
         <dl>
             <dt><i class="icon-tag"></i></dt>

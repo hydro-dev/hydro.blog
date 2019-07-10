@@ -13,6 +13,7 @@ module.exports = class HYDRO_BLOG_ROUTER {
         this.router
             .use(async (ctx, next) => {
                 ctx.state.theme = this.config.theme;
+                ctx.state.render = blog.render;
                 ctx._404 = async info => {
                     await ctx.render('hydro.blog/404', { title: 'Page not found', info });
                 };
